@@ -45,6 +45,7 @@ Building a learning app using Unity3D to be used on students tablet.
 * Change volume mute/unmute buttons when slider is clicked
 
 **Not Implemented**
+* Connection lines on matching tests
 * Show logo or splash on start
 * Multiple choice tests
 * Check all that apply
