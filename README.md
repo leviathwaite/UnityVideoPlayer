@@ -39,13 +39,13 @@ Building a learning app using Unity3D to be used on students tablet.
 * Check all that apply
 
 #### Known Issues
-######Learning Prompts
+###### Learning Prompts
 * Can't return to videos
 
 **Matching Test**
 * Can't replace answer when dropping on top of another
 
-######VideoPlayer
+###### VideoPlayer
 * Show first frame or blank screen on start of video or after pressing stop.
 * Change pause to play when video ends.
 * Change volume mute/unmute buttons when slider is clicked
