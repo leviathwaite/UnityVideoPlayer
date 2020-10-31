@@ -6,15 +6,10 @@ Building a learning app using Unity3D to be used on students tablet.
 
 **Challenges**
 * Video player that can pause video to show learning prompts or insert learning prompts between videos and play thru a playlist containing both.
-
 * Creating learning promts for quizs/tests
-
 * Evaluating answers with feed back
-
 * Score/Test result tracking and summary
-
 * A learning track creator scene or app that a non programmer can use to create learning tracks.
-
 * Inject learning tracks into build or app
 
 ## Video Player and Learning Prompts
