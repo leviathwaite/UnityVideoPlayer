@@ -16,7 +16,7 @@ Building a learning app using Unity3D to be used on students tablet.
 ## Video Player and Learning Prompts
 
 ### Video Player
-![GitHub Logo](/Images/VideoPlayer.png)
+![Video Player](/Images/VideoPlayer.PNG)
 
 **Navigation**
 * Play/Pause, Stop, Next Buttons
