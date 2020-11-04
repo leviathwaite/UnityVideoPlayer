@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 // Slot for draggable to be dropped in
 
@@ -10,8 +11,6 @@ using UnityEngine.EventSystems;
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
     [SerializeField]
-    private bool containsItem = false;
-    [SerializeField]
     private float distance;
     [SerializeField]
     private float dropDistance = 1;
@@ -19,18 +18,32 @@ public class ItemSlot : MonoBehaviour, IDropHandler
     private RectTransform rectTransform;
     private RectTransform parentRectTransform;
     private Draggable currentDraggable;
+    private Image image;
 
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         parentRectTransform = GetComponent<RectTransform>();
+        image = GetComponent<Image>();
+    }
+
+    private void Update()
+    {
+        if(currentDraggable)
+        {
+            // Check if current draggable was removed
+            if(currentDraggable.InSlot() == false)
+            {
+                currentDraggable = null;
+                image.raycastTarget = true;
+            }
+        }
     }
 
     public void OnDrop(PointerEventData eventData)
     {
         if(eventData.pointerDrag != null) // && containsItem == false)
         {
-            containsItem = true;
 
             // draggable item needs anchor points applied
             Draggable draggable = eventData.pointerDrag.GetComponent<Draggable>();
@@ -47,6 +60,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                     }
 
                     draggable.SetInSlot(rectTransform.anchoredPosition);
+                    image.raycastTarget = false;
 
                     currentDraggable = draggable;
                 }

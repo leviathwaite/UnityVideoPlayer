@@ -44,6 +44,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         canvasGroup.alpha = draggedAlpha;
         canvasGroup.blocksRaycasts = false;
+        
 
         inSlot = false;
     }
@@ -51,6 +52,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -60,6 +62,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         if(inSlot == false)
         {
+            ClearLineRenderer();
             ResetToStartPosition();
         }
     }
@@ -69,12 +72,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         inSlot = true;
         rectTransform.anchoredPosition = position;
 
-        // Draw line
-        lineRenderer.gameObject.SetActive(true);
-        linePoints.Add(startingPosition);
-        linePoints.Add(rectTransform.anchoredPosition);
-        lineRenderer.Points = linePoints.ToArray();
-        
+        ClearLineRenderer();
+        DrawLineRenderer();
     }
 
     public void ResetToStartPosition()
@@ -82,6 +81,25 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         inSlot = false;
         rectTransform.anchoredPosition = startingPosition;
 
+        ClearLineRenderer();
+    }
+
+    public bool InSlot()
+    {
+        return inSlot;
+    }
+
+    private void DrawLineRenderer()
+    {
+        // Draw line
+        lineRenderer.gameObject.SetActive(true);
+        linePoints.Add(startingPosition);
+        linePoints.Add(rectTransform.anchoredPosition);
+        lineRenderer.Points = linePoints.ToArray();
+    }
+
+    private void ClearLineRenderer()
+    {
         // TODO is there a better way to clear points?
         linePoints.Clear();
         lineRenderer.Points = linePoints.ToArray();
