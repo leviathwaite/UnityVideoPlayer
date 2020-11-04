@@ -821,7 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containsItem: 0
   distance: 0
-  dropDistance: 9
+  dropDistance: 30
 --- !u!114 &404027902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containsItem: 0
   distance: 0
-  dropDistance: 9
+  dropDistance: 30
 --- !u!114 &703030985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,7 +2180,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 550, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101720833
 MonoBehaviour:
@@ -2196,7 +2196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containsItem: 0
   distance: 0
-  dropDistance: 9
+  dropDistance: 30
 --- !u!114 &1101720834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,7 +2216,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1278f81a2dce8604a988a82186b87de1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81f0c8cab1eecb44a831ebe017eaed15, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
