@@ -7,15 +7,14 @@ using UnityEngine.EventSystems;
 
 // Used to control video frame via slider
 // TODO smooth out scrubbing, kinda glitchy
+// Maybe pause while scrubber is being used
 public class ScrubberController : MonoBehaviour, IDragHandler, IPointerDownHandler
 {
-    public VideoPlayer _videoPlayer;
+    public VideoPlayer videoPlayer;
 
     private Image progress;
 
    
-
-    // Start is called before the first frame update
     void Start()
     {
         progress = GetComponent<Image>();
@@ -25,10 +24,10 @@ public class ScrubberController : MonoBehaviour, IDragHandler, IPointerDownHandl
     void Update()
     {
         // check if we have a video
-        if (_videoPlayer.frameCount > 0)
+        if (videoPlayer.frameCount > 0)
         {
             // percent of video played
-            progress.fillAmount = (float)_videoPlayer.frame / (float)_videoPlayer.frameCount;
+            progress.fillAmount = (float)videoPlayer.frame / (float)videoPlayer.frameCount;
         }
     }
     public void OnDrag(PointerEventData eventData)
@@ -54,7 +53,7 @@ public class ScrubberController : MonoBehaviour, IDragHandler, IPointerDownHandl
 
     private void SkipToPercent(float pct)
     {
-        var frame = _videoPlayer.frameCount * pct;
-        _videoPlayer.frame = (long)frame;
+        var frame = videoPlayer.frameCount * pct;
+        videoPlayer.frame = (long)frame;
     }
 }

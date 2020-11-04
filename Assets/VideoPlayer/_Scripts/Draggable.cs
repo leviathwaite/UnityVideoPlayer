@@ -28,18 +28,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     // for line renderer
     private List<Vector2> linePoints;
 
-    // How to use UI LineRenderer extension
-    /*
-    // Use this for initialization
-    public void AddNewPoint()
-    {
-        var point = new Vector2() { x = float.Parse(XValue.text), y = float.Parse(YValue.text) };
-        var pointlist = new List<Vector2>(LineRenderer.Points);
-        pointlist.Add(point);
-        LineRenderer.Points = pointlist.ToArray();
-    }
-    */
-
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -72,8 +60,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         if(inSlot == false)
         {
-            // return to starting position
-            // rectTransform.localPosition = startingPosition;
             ResetToStartPosition();
         }
     }

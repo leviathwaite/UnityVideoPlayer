@@ -28,12 +28,6 @@ public class VideoController : MonoBehaviour
         _videoPlayer = GetComponent<VideoPlayer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Play()
     {
         _videoPlayer.clip = videos[currentVideo];
