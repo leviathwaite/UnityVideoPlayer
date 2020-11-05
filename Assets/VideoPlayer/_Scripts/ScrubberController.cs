@@ -8,16 +8,16 @@ using UnityEngine.EventSystems;
 // Used to control video frame via slider
 // TODO smooth out scrubbing, kinda glitchy
 // Maybe pause while scrubber is being used
-public class ScrubberController : MonoBehaviour, IDragHandler, IPointerDownHandler
+public class ScrubberController : MonoBehaviour,  IPointerDownHandler, IDragHandler, IEndDragHandler
 {
     public VideoPlayer videoPlayer;
 
     private Image progress;
 
-   
     void Start()
     {
         progress = GetComponent<Image>();
+        progress.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -30,13 +30,10 @@ public class ScrubberController : MonoBehaviour, IDragHandler, IPointerDownHandl
             progress.fillAmount = (float)videoPlayer.frame / (float)videoPlayer.frameCount;
         }
     }
-    public void OnDrag(PointerEventData eventData)
-    {
-        TrySkip(eventData);
-    }
-
+    
     public void OnPointerDown(PointerEventData eventData)
     {
+        videoPlayer.Pause();
         TrySkip(eventData);
     }
 
@@ -55,5 +52,15 @@ public class ScrubberController : MonoBehaviour, IDragHandler, IPointerDownHandl
     {
         var frame = videoPlayer.frameCount * pct;
         videoPlayer.frame = (long)frame;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        TrySkip(eventData);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        videoPlayer.Play();
     }
 }

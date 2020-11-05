@@ -19,48 +19,58 @@ public class VideoController : MonoBehaviour
 
     [SerializeField]
     private int currentVideo = 0;
+    [SerializeField]
+    private int startingFrame = 1;
 
-    private VideoPlayer _videoPlayer;
+    private VideoPlayer videoPlayer;
 
-    // Start is called before the first frame update
+   
     void Start()
     {
-        _videoPlayer = GetComponent<VideoPlayer>();
+        videoPlayer = GetComponent<VideoPlayer>();
+        // Play on awake needs to be enabled to allow scrubbing before pressing play
+        videoPlayer.playOnAwake = true;
+        videoPlayer.clip = videos[currentVideo];
+        videoPlayer.frame = startingFrame;
+        videoPlayer.Pause();
     }
 
     public void Play()
     {
-        _videoPlayer.clip = videos[currentVideo];
-        _videoPlayer.Play();
+        videoPlayer.clip = videos[currentVideo];
+        videoPlayer.Play();
     }
 
     public void Stop()
     {
-        _videoPlayer.frame = 1;
-        _videoPlayer.Stop();
+        // Using Pause() instead of Stop() to show first frame.
+        videoPlayer.frame = startingFrame;
+        videoPlayer.Pause();
     }
 
     public void Pause()
     {
-        _videoPlayer.Pause();
+        videoPlayer.Pause();
     }
 
     public void StepForward()
     {
-        _videoPlayer.StepForward();
+        videoPlayer.StepForward();
     }
 
     public void Loop()
     {
-        _videoPlayer.isLooping = !_videoPlayer.isLooping;
+        videoPlayer.isLooping = !videoPlayer.isLooping;
     }
 
     public void NextVideo()
     {
         currentVideo++;
         currentVideo = Mathf.Clamp(currentVideo, 0, videos.Length - 1);
-        _videoPlayer.clip = videos[currentVideo];
-        _videoPlayer.Play();
+        videoPlayer.clip = videos[currentVideo];
+        videoPlayer.Play();
+        videoPlayer.frame = startingFrame;
+        videoPlayer.Pause();
 
         if(currentVideo == videos.Length - 1)
         {
